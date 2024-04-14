@@ -24,7 +24,31 @@ services:
           memory: 4G
     volumes:
       - bills-collector-db:/var/lib/postgresql/data
-
+  app:
+    image: bills:latest
+    container_name: bills-collector
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: [
+        "CMD-SHELL",
+        "wget -T5 -qO- http://localhost:8080/bills-collector/actuator/health | grep UP || exit 1"
+      ]
+      interval: 15s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+    restart: on-failure
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 4G
+    depends_on:
+      db:
+        condition: service_healthy
 volumes:
   bills-collector-db:
 
