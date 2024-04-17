@@ -54,4 +54,5 @@ volumes:
 
 networks:
   bills-collector:
+    external: true
     driver: bridge

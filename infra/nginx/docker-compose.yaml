@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  nginx:
+    image: nginx:alpine3.18
+    container_name: bills-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    healthcheck:
+      test: [ "CMD-SHELL", "service nginx status" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+    restart: on-failure
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 1G
+    volumes:
+      - ./app.conf:/etc/nginx/nginx.conf:ro
+
+networks:
+  bills-collector:
+    external: true
+    driver: bridge
