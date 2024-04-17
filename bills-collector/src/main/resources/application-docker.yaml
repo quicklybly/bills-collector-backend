@@ -1,16 +1,5 @@
 spring:
-  application:
-    name: bills-collector
   datasource:
     username: postgres
     password: postgres
     url: jdbc:postgresql://db:5432/bills-collector
-    driver-class-name: org.postgresql.Driver
-  liquibase:
-    change-log: db/changelog.yaml
-
-server:
-  port: 8080
-  servlet:
-    context-path: /${spring.application.name}
-
