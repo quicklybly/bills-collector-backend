@@ -21,6 +21,8 @@ services:
           memory: 1G
     volumes:
       - ./app.conf:/etc/nginx/nginx.conf:ro
+    networks:
+      bills-collector:
 
 networks:
   bills-collector:
