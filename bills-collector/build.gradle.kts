@@ -21,20 +21,20 @@ repositories {
 
 dependencies {
     // spring
-    implementation("org.springframework.boot:spring-boot-starter-actuator")
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot", "spring-boot-starter-actuator")
+    implementation("org.springframework.boot", "spring-boot-starter-data-jpa")
+    implementation("org.springframework.boot", "spring-boot-starter-web")
 
     // kotlin
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation("com.fasterxml.jackson.module", "jackson-module-kotlin")
+    implementation("org.jetbrains.kotlin", "kotlin-reflect")
 
     // db
     implementation("org.liquibase", "liquibase-core", libs.versions.liquibase.get())
     runtimeOnly("org.postgresql", "postgresql", libs.versions.postgres.get())
 
     // tests
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.springframework.boot", "spring-boot-starter-test")
 }
 
 tasks.withType<KotlinCompile> {

@@ -3,7 +3,7 @@ spring:
     name: bills-collector
   datasource:
     username: postgres
-    password: postgres
+    password: some-cool-password
     url: jdbc:postgresql://localhost:5432/bills-collector
     driver-class-name: org.postgresql.Driver
   liquibase:
@@ -13,4 +13,3 @@ server:
   port: 8080
   servlet:
     context-path: /${spring.application.name}
-
