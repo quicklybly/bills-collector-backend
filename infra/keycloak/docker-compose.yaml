@@ -1,0 +1,68 @@
+version: "3.9"
+
+services:
+  keycloak_db:
+    image: postgres:16.2-alpine3.19
+    container_name: bills-keycloak-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -d postgres" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: on-failure
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 4G
+    volumes:
+      - bills-keycloak-db:/var/lib/postgresql/data
+    networks:
+      bills-keycloak:
+  keycloak:
+    image: quay.io/keycloak/keycloak:22.0
+    container_name: bills-keycloak
+    command:
+      - start --db postgres --hostname-strict-https false --hostname-strict false --proxy edge --http-enabled true --import-realm --spi-user-profile-legacy-user-profile-read-only-attributes *_RES_ACCESS_MODE
+    environment:
+      KC_DB_URL: jdbc:postgresql://bills-keycloak-db:5432/postgres
+      KC_DB_USERNAME: postgres
+      KC_DB_PASSWORD: postgres
+      KC_DB_SCHEMA: public
+      KC_FEATURES: preview
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_HEALTH_ENABLED: true
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+    healthcheck:
+      test: [ "CMD-SHELL", '[ -f /tmp/HealthCheck.java ] || echo "public class HealthCheck { public static void main(String[] args) throws java.lang.Throwable { System.exit(java.net.HttpURLConnection.HTTP_OK == ((java.net.HttpURLConnection)new java.net.URL(args[0]).openConnection()).getResponseCode() ? 0 : 1); } }" > /tmp/HealthCheck.java && java /tmp/HealthCheck.java http://localhost:8080/health/live' ]
+      start_period: 10s
+      interval: 30s
+      retries: 3
+      timeout: 5s
+    restart: on-failure
+    depends_on:
+      keycloak_db:
+        condition: service_healthy
+    volumes:
+      - type: bind
+        source: ./imports/realm-export.json
+        target: /opt/keycloak/data/import/realm-export.json
+        read_only: false # sesurity be like
+    networks:
+      bills-collector:
+      bills-keycloak:
+volumes:
+  bills-keycloak-db:
+networks:
+  bills-keycloak:
+  bills-collector:
+    external: true
+    driver: bridge
