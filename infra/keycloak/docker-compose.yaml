@@ -38,6 +38,8 @@ services:
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin
       KC_HEALTH_ENABLED: true
+      KC_HOSTNAME_URL: http://localhost/auth/
+      KC_HOSTNAME_ADMIN_URL: http://localhost/auth/
     ports:
       - "8081:8080"
       - "8443:8443"
@@ -55,7 +57,7 @@ services:
       - type: bind
         source: ./imports/realm-export.json
         target: /opt/keycloak/data/import/realm-export.json
-        read_only: false # sesurity be like
+        read_only: false # pu-pu-pu
     networks:
       bills-collector:
       bills-keycloak:
