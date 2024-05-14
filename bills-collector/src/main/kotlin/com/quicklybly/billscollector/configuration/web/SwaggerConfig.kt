@@ -22,7 +22,7 @@ class SwaggerConfig {
                         .name("Artem Lysenko")
                         .url("https://t.me/quicklybly")
                 )
-                .version("v0.0.0")
+                .version("v0.0.1")
         )
         .servers(
             listOf(
@@ -31,7 +31,10 @@ class SwaggerConfig {
                     .description("Local development server"),
                 Server()
                     .url("http://213.171.3.55/api/bills-collector")
-                    .description("Production server")
+                    .description("Production server"),
+                Server()
+                    .url("http://213.171.3.55:8080/bills-collector")
+                    .description("Direct production server")
             )
         )
         .components(Components())
