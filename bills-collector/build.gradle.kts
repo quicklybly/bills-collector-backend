@@ -33,6 +33,9 @@ dependencies {
     implementation("org.liquibase", "liquibase-core", libs.versions.liquibase.get())
     runtimeOnly("org.postgresql", "postgresql", libs.versions.postgres.get())
 
+    // other
+    implementation("org.springdoc", "springdoc-openapi-starter-webmvc-ui", libs.versions.swagger.get())
+
     // tests
     testImplementation("org.springframework.boot", "spring-boot-starter-test")
 }
