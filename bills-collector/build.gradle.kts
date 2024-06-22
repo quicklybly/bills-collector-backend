@@ -28,6 +28,7 @@ dependencies {
 
     // kotlin
     implementation("com.fasterxml.jackson.module", "jackson-module-kotlin")
+    implementation("com.fasterxml.jackson.module", "jackson-module-blackbird")
     implementation("org.jetbrains.kotlin", "kotlin-reflect")
 
     // db
