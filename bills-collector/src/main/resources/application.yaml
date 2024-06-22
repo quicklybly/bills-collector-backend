@@ -1,6 +1,12 @@
 spring:
   application:
     name: bills-collector
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8081/realms/bills-collector
+          jwk-set-uri: http://localhost:8081/realms/bills-collector/protocol/openid-connect/certs
   datasource:
     username: postgres
     password: some-cool-password
@@ -9,6 +15,9 @@ spring:
   liquibase:
     change-log: db/changelog.yaml
 
+logging:
+  level:
+    org.springframework.security: TRACE
 server:
   port: 8080
   servlet:
