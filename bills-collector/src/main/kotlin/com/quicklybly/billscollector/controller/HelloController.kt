@@ -1,16 +1,18 @@
 package com.quicklybly.billscollector.controller
 
-import org.springframework.security.core.context.SecurityContextHolder
-import org.springframework.security.oauth2.jwt.Jwt
+import com.quicklybly.billscollector.service.AuthenticationService
 import org.springframework.web.bind.annotation.*
 
 @CrossOrigin(origins = ["*"], methods = [RequestMethod.GET, RequestMethod.POST])
 @RequestMapping("/hello")
 @RestController
-class HelloController {
+class HelloController(
+    private val service: AuthenticationService
+) {
 
     @GetMapping
     fun hello(): String {
-        return "${(SecurityContextHolder.getContext().authentication.principal as Jwt).claims["preferred_username"]}, hello from bills collector!"
+        val client = service.extractClient()
+        return "${client.username}, hello from bills collector!"
     }
 }
