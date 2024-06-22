@@ -4,12 +4,12 @@ import jakarta.persistence.*
 
 @Entity
 @Table(
-    name = "app_client",
+    name = "client",
     indexes = [
-        Index(name = "app_client_username_idx", columnList = "username")
+        Index(name = "client_username_idx", columnList = "username")
     ]
 )
-open class AppClient {
+open class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

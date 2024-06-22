@@ -3,7 +3,13 @@ package com.quicklybly.billscollector.entity
 import jakarta.persistence.*
 
 @Entity
-@Table(name = "bill")
+@Table(
+    name = "bill",
+    indexes = [
+        Index(name = "bill_name_idx", columnList = "name"),
+        Index(name = "bill_client_id_idx", columnList = "client_id"),
+    ]
+)
 open class Bill {
 
     @Id
@@ -16,4 +22,7 @@ open class Bill {
 
     @Column(name = "description", nullable = true)
     open var description: String? = null
+
+    @ManyToOne(optional = false)
+    open var client: Client? = null
 }

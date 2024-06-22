@@ -6,7 +6,7 @@ databaseChangeLog:
       changes:
         - createSequence:
             incrementBy: 50
-            sequenceName: app_client_seq
+            sequenceName: client_seq
             startValue: 1
   - changeSet:
       id: 1719070891410-2
@@ -19,7 +19,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     primaryKey: true
-                    primaryKeyName: pk_app_client
+                    primaryKeyName: pk_client
                   name: id
                   type: BIGINT
               - column:
@@ -27,7 +27,7 @@ databaseChangeLog:
                     nullable: false
                   name: username
                   type: VARCHAR(255)
-            tableName: app_client
+            tableName: client
   - changeSet:
       id: 1719070891410-3
       author: quicklybly
@@ -35,8 +35,8 @@ databaseChangeLog:
       changes:
         - addUniqueConstraint:
             columnNames: username
-            constraintName: uc_app_client_username
-            tableName: app_client
+            constraintName: uc_client_username
+            tableName: client
   - changeSet:
       id: 1719070891410-4
       author: quicklybly
@@ -46,6 +46,6 @@ databaseChangeLog:
             columns:
               - column:
                   name: username
-            indexName: app_client_username_idx
-            tableName: app_client
+            indexName: client_username_idx
+            tableName: client
 
