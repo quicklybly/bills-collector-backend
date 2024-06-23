@@ -18,6 +18,17 @@ spring:
     hibernate:
       ddl-auto: validate
     show-sql: true
+  ai:
+    retry:
+      max-attempts: 2
+      exclude-on-http-codes:
+        - 429
+      backoff:
+        initial-interval: 1s
+        multiplier: 2
+        max-interval: 3s
+    openai:
+      api-key: put-api-key-here
 
 logging:
   level:

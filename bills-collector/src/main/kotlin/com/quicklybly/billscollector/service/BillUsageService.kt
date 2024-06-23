@@ -34,6 +34,7 @@ class BillUsageService(
         val bill = getValidatedBill(billId)
 
         val usage = mapper.toEntity(usageDto).also {
+            it.id = null
             it.bill = bill
         }
 
