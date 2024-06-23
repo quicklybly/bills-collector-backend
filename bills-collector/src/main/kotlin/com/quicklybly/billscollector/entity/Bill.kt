@@ -25,4 +25,11 @@ open class Bill {
 
     @ManyToOne(optional = false)
     open var client: Client? = null
+
+    @OneToMany(
+        mappedBy = "bill",
+        cascade = [CascadeType.ALL],
+        orphanRemoval = true,
+    )
+    open var usages: MutableList<BillUsage> = mutableListOf()
 }

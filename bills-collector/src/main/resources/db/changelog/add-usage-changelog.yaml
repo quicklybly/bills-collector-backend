@@ -1,0 +1,58 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1719137006038-3
+      author: quicklybly (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createSequence:
+            incrementBy: 50
+            sequenceName: bill_usage_seq
+            startValue: 1
+  - changeSet:
+      id: 1719137006038-4
+      author: quicklybly (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_bill_usage
+                  name: id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: count_date
+                  type: DATE
+              - column:
+                  constraints:
+                    nullable: false
+                  name: usage
+                  type: DECIMAL(19, 2)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: bill_id
+                  type: BIGINT
+            tableName: bill_usage
+  - changeSet:
+      id: 1719137006038-6
+      author: quicklybly (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: bill_id
+            baseTableName: bill_usage
+            constraintName: FK_BILL_USAGE_ON_BILL
+            referencedColumnNames: id
+            referencedTableName: bill
+        - createIndex:
+            columns:
+              - column:
+                  name: bill_id
+            indexName: bill_usage_bill_id_idx
+            tableName: bill_usage
+

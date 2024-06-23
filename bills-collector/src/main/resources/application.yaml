@@ -17,7 +17,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: validate
-    show-sql: true # todo remove in production
+    show-sql: true
 
 logging:
   level:
