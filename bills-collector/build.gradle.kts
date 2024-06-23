@@ -17,16 +17,23 @@ java {
 
 repositories {
     mavenCentral()
+    maven("https://repo.spring.io/snapshot")
+    maven("https://repo.spring.io/milestone")
 }
 
+val springAiVersion by extra("1.0.0-M1")
 dependencies {
     // spring
     implementation("org.springframework.boot", "spring-boot-starter-actuator")
     implementation("org.springframework.boot", "spring-boot-starter-data-jpa")
     implementation("org.springframework.boot", "spring-boot-starter-web")
+    implementation("org.springframework.boot", "spring-boot-starter-oauth2-resource-server")
+    implementation("org.springframework.boot", "spring-boot-starter-validation")
+    implementation("org.springframework.ai:spring-ai-openai-spring-boot-starter")
 
     // kotlin
     implementation("com.fasterxml.jackson.module", "jackson-module-kotlin")
+    implementation("com.fasterxml.jackson.module", "jackson-module-blackbird")
     implementation("org.jetbrains.kotlin", "kotlin-reflect")
 
     // db
@@ -35,9 +42,16 @@ dependencies {
 
     // other
     implementation("org.springdoc", "springdoc-openapi-starter-webmvc-ui", libs.versions.swagger.get())
+    implementation("io.github.microutils", "kotlin-logging", libs.versions.kotlinLogging.get())
 
     // tests
     testImplementation("org.springframework.boot", "spring-boot-starter-test")
+}
+
+dependencyManagement {
+    imports {
+        mavenBom("org.springframework.ai:spring-ai-bom:$springAiVersion")
+    }
 }
 
 tasks.withType<KotlinCompile> {

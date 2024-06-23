@@ -4,12 +4,24 @@ import io.swagger.v3.oas.models.Components
 import io.swagger.v3.oas.models.OpenAPI
 import io.swagger.v3.oas.models.info.Contact
 import io.swagger.v3.oas.models.info.Info
+import io.swagger.v3.oas.models.security.OAuthFlow
+import io.swagger.v3.oas.models.security.OAuthFlows
+import io.swagger.v3.oas.models.security.SecurityRequirement
+import io.swagger.v3.oas.models.security.SecurityScheme
 import io.swagger.v3.oas.models.servers.Server
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
+private const val OAUTH_SCHEME_NAME: String = "keycloak"
+
 @Configuration
 class SwaggerConfig {
+
+    @Value("\${spring.security.oauth2.resourceserver.jwt.issuer-uri}")
+    lateinit var authServerUrl: String
+
+    val realm: String = "bills-collector"
 
     @Bean
     fun openApi(): OpenAPI = OpenAPI()
@@ -37,5 +49,20 @@ class SwaggerConfig {
                     .description("Direct production server")
             )
         )
-        .components(Components())
+        .components(
+            Components()
+                .addSecuritySchemes(OAUTH_SCHEME_NAME, schema())
+        )
+        .addSecurityItem(SecurityRequirement().addList(OAUTH_SCHEME_NAME))
+
+    private fun schema(): SecurityScheme = SecurityScheme()
+        .type(SecurityScheme.Type.OAUTH2)
+        .flows(
+            OAuthFlows()
+                .password(
+                    OAuthFlow()
+                        .tokenUrl("$authServerUrl/realms/$realm/protocol/openid-connect/token")
+                        .refreshUrl("$authServerUrl/realms/$realm/protocol/openid-connect/token")
+                )
+        )
 }

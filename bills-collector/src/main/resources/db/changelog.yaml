@@ -1,1 +1,7 @@
 databaseChangeLog:
+  - include:
+      file: db/changelog/add-client-changelog.yaml
+  - include:
+      file: db/changelog/add-bill-changelog.yaml
+  - include:
+      file: db/changelog/add-usage-changelog.yaml

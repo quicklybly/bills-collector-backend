@@ -1,0 +1,67 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1719093169708-3
+      author: quicklybly
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createSequence:
+            incrementBy: 50
+            sequenceName: bill_seq
+            startValue: 1
+  - changeSet:
+      id: 1719093169708-4
+      author: quicklybly
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_bill
+                  name: id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  name: description
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: client_id
+                  type: BIGINT
+            tableName: bill
+  - changeSet:
+      id: 1719093169708-6
+      author: quicklybly (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: name
+            indexName: bill_name_idx
+            tableName: bill
+  - changeSet:
+      id: 1719093169708-7
+      author: quicklybly (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: client_id
+            baseTableName: bill
+            constraintName: FK_BILL_ON_CLIENT
+            referencedColumnNames: id
+            referencedTableName: client
+        - createIndex:
+            columns:
+              - column:
+                  name: client_id
+            indexName: bill_client_id_idx
+            tableName: bill
+

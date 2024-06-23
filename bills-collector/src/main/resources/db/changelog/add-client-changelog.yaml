@@ -1,0 +1,51 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1719070891410-1
+      author: quicklybly
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createSequence:
+            incrementBy: 50
+            sequenceName: client_seq
+            startValue: 1
+  - changeSet:
+      id: 1719070891410-2
+      author: quicklybly
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_client
+                  name: id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: username
+                  type: VARCHAR(255)
+            tableName: client
+  - changeSet:
+      id: 1719070891410-3
+      author: quicklybly
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addUniqueConstraint:
+            columnNames: username
+            constraintName: uc_client_username
+            tableName: client
+  - changeSet:
+      id: 1719070891410-4
+      author: quicklybly
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: username
+            indexName: client_username_idx
+            tableName: client
+

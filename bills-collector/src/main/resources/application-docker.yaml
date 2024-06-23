@@ -3,3 +3,5 @@ spring:
     username: postgres
     password: some-cool-password
     url: jdbc:postgresql://db:5432/bills-collector
+  jpa:
+    show-sql: false

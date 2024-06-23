@@ -1,6 +1,12 @@
 spring:
   application:
     name: bills-collector
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8081/realms/bills-collector
+          jwk-set-uri: http://localhost:8081/realms/bills-collector/protocol/openid-connect/certs
   datasource:
     username: postgres
     password: some-cool-password
@@ -8,6 +14,25 @@ spring:
     driver-class-name: org.postgresql.Driver
   liquibase:
     change-log: db/changelog.yaml
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+  ai:
+    retry:
+      max-attempts: 2
+      exclude-on-http-codes:
+        - 429
+      backoff:
+        initial-interval: 1s
+        multiplier: 2
+        max-interval: 3s
+    openai:
+      api-key: put-api-key-here
+
+logging:
+  level:
+    root: info
 
 server:
   port: 8080
