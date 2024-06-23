@@ -4,6 +4,7 @@ import com.quicklybly.billscollector.model.BillDto
 import com.quicklybly.billscollector.model.ErrorDto
 import com.quicklybly.billscollector.service.BillService
 import io.swagger.v3.oas.annotations.Operation
+import io.swagger.v3.oas.annotations.media.ArraySchema
 import io.swagger.v3.oas.annotations.media.Content
 import io.swagger.v3.oas.annotations.media.Schema
 import io.swagger.v3.oas.annotations.responses.ApiResponse
@@ -23,7 +24,9 @@ class BillController(
             ApiResponse(
                 responseCode = "200",
                 description = "Bills retrieved",
-                content = [Content(schema = Schema(implementation = BillDto::class))]
+                content = [
+                    Content(array = ArraySchema(schema = Schema(implementation = BillDto::class)))
+                ]
             ),
             ApiResponse(
                 responseCode = "401",

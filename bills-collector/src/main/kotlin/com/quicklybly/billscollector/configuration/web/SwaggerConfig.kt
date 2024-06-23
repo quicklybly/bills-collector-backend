@@ -4,7 +4,10 @@ import io.swagger.v3.oas.models.Components
 import io.swagger.v3.oas.models.OpenAPI
 import io.swagger.v3.oas.models.info.Contact
 import io.swagger.v3.oas.models.info.Info
-import io.swagger.v3.oas.models.security.*
+import io.swagger.v3.oas.models.security.OAuthFlow
+import io.swagger.v3.oas.models.security.OAuthFlows
+import io.swagger.v3.oas.models.security.SecurityRequirement
+import io.swagger.v3.oas.models.security.SecurityScheme
 import io.swagger.v3.oas.models.servers.Server
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
@@ -16,7 +19,7 @@ private const val OAUTH_SCHEME_NAME: String = "keycloak"
 class SwaggerConfig {
 
     @Value("\${spring.security.oauth2.resourceserver.jwt.issuer-uri}")
-    var authServerUrl: String? = null
+    lateinit var authServerUrl: String
 
     val realm: String = "bills-collector"
 
