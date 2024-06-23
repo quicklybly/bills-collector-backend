@@ -1,0 +1,393 @@
+{
+	"info": {
+		"_postman_id": "a610ef9e-3164-4de1-9aa3-83f206d384a8",
+		"name": "bills",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24634490"
+	},
+	"item": [
+		{
+			"name": "hello",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"daysOfVacation\": 10,\n    \"averageSalary\": \"30000\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://213.171.3.55/api/bills-collector/hello",
+					"protocol": "http",
+					"host": [
+						"213",
+						"171",
+						"3",
+						"55"
+					],
+					"path": [
+						"api",
+						"bills-collector",
+						"hello"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get bills",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://213.171.3.55/api/bills-collector/bills",
+					"protocol": "http",
+					"host": [
+						"213",
+						"171",
+						"3",
+						"55"
+					],
+					"path": [
+						"api",
+						"bills-collector",
+						"bills"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add bill",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Электричество\",\n    \"description\": \"Счет за электроэнергию\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://213.171.3.55/api/bills-collector/bills",
+					"protocol": "http",
+					"host": [
+						"213",
+						"171",
+						"3",
+						"55"
+					],
+					"path": [
+						"api",
+						"bills-collector",
+						"bills"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update bill",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Электричество\",\n    \"description\": \"Счет за электроэнергию\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://213.171.3.55/api/bills-collector/bills/202",
+					"protocol": "http",
+					"host": [
+						"213",
+						"171",
+						"3",
+						"55"
+					],
+					"path": [
+						"api",
+						"bills-collector",
+						"bills",
+						"202"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete bill",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://213.171.3.55/api/bills-collector/bills/252",
+					"protocol": "http",
+					"host": [
+						"213",
+						"171",
+						"3",
+						"55"
+					],
+					"path": [
+						"api",
+						"bills-collector",
+						"bills",
+						"252"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get usages",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://213.171.3.55/api/bills-collector/bills/2/usages",
+					"protocol": "http",
+					"host": [
+						"213",
+						"171",
+						"3",
+						"55"
+					],
+					"path": [
+						"api",
+						"bills-collector",
+						"bills",
+						"2",
+						"usages"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add usage",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"count_date\": \"2024-06-01\",\n    \"usage\": \"1300\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://213.171.3.55/api/bills-collector/bills/1/usages",
+					"protocol": "http",
+					"host": [
+						"213",
+						"171",
+						"3",
+						"55"
+					],
+					"path": [
+						"api",
+						"bills-collector",
+						"bills",
+						"1",
+						"usages"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit usage",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"count_date\": \"2024-01-01\",\n    \"usage\": \"300\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://213.171.3.55/api/bills-collector/bills/202/usages/2",
+					"protocol": "http",
+					"host": [
+						"213",
+						"171",
+						"3",
+						"55"
+					],
+					"path": [
+						"api",
+						"bills-collector",
+						"bills",
+						"202",
+						"usages",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete usage",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://213.171.3.55/api/bills-collector/bills/202/usages/52",
+					"protocol": "http",
+					"host": [
+						"213",
+						"171",
+						"3",
+						"55"
+					],
+					"path": [
+						"api",
+						"bills-collector",
+						"bills",
+						"202",
+						"usages",
+						"52"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get advice",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://213.171.3.55/api/bills-collector/bills/6/advice",
+					"protocol": "http",
+					"host": [
+						"213",
+						"171",
+						"3",
+						"55"
+					],
+					"path": [
+						"api",
+						"bills-collector",
+						"bills",
+						"6",
+						"advice"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "password",
+				"value": "admin123",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "admin123",
+				"type": "string"
+			},
+			{
+				"key": "clientSecret",
+				"value": "s5uex42pRHfy2uTlle5GjnUiWDp2th7j",
+				"type": "string"
+			},
+			{
+				"key": "accessTokenUrl",
+				"value": "http://213.171.3.55/auth/realms/bills-collector/protocol/openid-connect/token",
+				"type": "string"
+			},
+			{
+				"key": "refreshRequestParams",
+				"value": [],
+				"type": "any"
+			},
+			{
+				"key": "tokenRequestParams",
+				"value": [],
+				"type": "any"
+			},
+			{
+				"key": "authRequestParams",
+				"value": [],
+				"type": "any"
+			},
+			{
+				"key": "challengeAlgorithm",
+				"value": "S256",
+				"type": "string"
+			},
+			{
+				"key": "grant_type",
+				"value": "password_credentials",
+				"type": "string"
+			},
+			{
+				"key": "clientId",
+				"value": "mobile-client",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			},
+			{
+				"key": "client_authentication",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "github token",
+			"value": "PUT HERE TOKEN"
+		}
+	]
+}
