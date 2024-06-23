@@ -38,6 +38,7 @@ dependencies {
 
     // other
     implementation("org.springdoc", "springdoc-openapi-starter-webmvc-ui", libs.versions.swagger.get())
+    implementation("io.github.microutils", "kotlin-logging", libs.versions.kotlinLogging.get())
 
     // tests
     testImplementation("org.springframework.boot", "spring-boot-starter-test")

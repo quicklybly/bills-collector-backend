@@ -2,3 +2,4 @@
 liquibase = "4.24.0"
 postgres = "42.6.2"
 swagger = "2.5.0"
+kotlinLogging = "3.0.5"
